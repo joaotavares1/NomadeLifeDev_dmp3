@@ -15,7 +15,7 @@ const CreatePost = () => {
  
   const navigate = useNavigate()
  
-  const { insertDocument, response } = userInsertDocument("posts")
+  const { insertDocument, response } = useInsertDocument("posts")
  
   const handleSubmit = (e) => {
     e.preventDefault()
