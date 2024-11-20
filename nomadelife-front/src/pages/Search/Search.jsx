@@ -14,6 +14,10 @@ const Search = () => {
         <div className={styles.search_container}>
             <h1>Resultados encontrados para: {search}</h1>
             <div className="post-list">
+                {/* Verifica se posts ainda não foi carregado */}
+                {posts === undefined && <p>Carregando resultados...</p>}
+    
+                {/* Mensagem de erro quando posts é uma lista vazia */}
                 {posts && posts.length === 0 && (
                     <>
                         <p>Não foram encontrados posts a partir da sua busca...</p>
@@ -22,9 +26,13 @@ const Search = () => {
                         </Link>
                     </>
                 )}
-                {posts && posts.map((post)=><PostDetail key={post.id} post={post}/>)}
+    
+                {/* Renderiza os posts quando disponíveis */}
+                {posts && posts.map((post) => 
+                    <PostDetail key={post.id} post={post} />
+                )}
             </div>
         </div>
-    )
+    );
 }
 export default Search
