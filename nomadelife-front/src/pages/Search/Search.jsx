@@ -22,9 +22,11 @@ const Search = () => {
                         </Link>
                     </>
                 )}
-                {posts && posts.map((post)=><PostDetail key={post.id} post={post}/>)}
+                {posts && posts.map((post) => 
+                    <PostDetail key={post.id} post={post} />
+                )}
             </div>
         </div>
-    )
+    );
 }
 export default Search

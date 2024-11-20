@@ -1,6 +1,6 @@
 import styles from "./EditPost.module.css"
 
-import { useState, UseEffect, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useAuthValue } from "../../context/AuthContext"
 import { useFetchDocument } from "../../hooks/useFetchDocument"
@@ -14,10 +14,10 @@ const EditPost = () => {
     console.log(post)
 
     const [title, setTitle] = useState("")
-    const [image, setimage] = useState("")
+    const [image, setImage] = useState("")
     const [body, setBody] = useState("")
     const [tags, setTags] = useState("")
-    const [formError, seFormError] = useState("")
+    const [formError, setFormError] = useState("")
 
     useEffect(() => {
         if (post) {
@@ -86,6 +86,17 @@ const EditPost = () => {
                                 placeholder="Pense num bom título..."
                                 onChange={(e) => setTitle(e.target.value)}
                                 value={title}
+                            />
+                        </label>
+                        <label>
+                            <span>URL da imagem:</span>
+                            <input
+                                type="text"
+                                name="image"
+                                required
+                                placeholder="Insira uma imagem que representa seu post"
+                                onChange={(e) => setImage(e.target.value)}
+                                value={image}
                             />
                         </label>
                         <p className={styles.preview_title}>Preview da imagem atual:</p>

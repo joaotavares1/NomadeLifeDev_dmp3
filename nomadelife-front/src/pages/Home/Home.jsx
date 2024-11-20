@@ -1,16 +1,18 @@
 import styles from './Home.module.css'
-import logo from '/logo-quadrada.png'
+
 
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { useState } from 'react'
 
 import PostDetail from '../../components/PostDetail'
 
 const Home = () => {
-    const { document: posts, loading } = useFetchDocuments("posts")
+    const { documents: posts, loading } = useFetchDocuments("posts")
+
     const navigate = useNavigate()
+
     const [query, setQuery] = useState("")
 
     const handlerSubmit = (e) => {
@@ -26,16 +28,19 @@ const Home = () => {
     return (
         <div className={styles.home}>
             <h1>Veja os nossos posts recentes</h1>
-            <forms className={styles.search_form} onSubmit={handlerSubmit}>
-                <input type="text"
+            <form className={styles.search_form} onSubmit={handlerSubmit}>
+                <input 
+                    type="text"
                     placeholder='Busque posts aqui'
                     onChange={(e) => setQuery(e.target.value)}
                 />
-            </forms>
+                <button className="btn btn-dark">Pesquisar</button>
+            </form>
             <div className='post-list'>
                 {loading && <p>Carregando...</p>}
-                {post && post.length === 0 && (
-                    <div className={styles.noposts}>Não encontramos postagens
+                {posts && posts.length === 0 && (
+                    <div className={styles.noposts}>
+                        <p>Não encontramos postagens</p>
                         <Link to={"/posts/create"} className='btn'>
                             Crie este Post
                         </Link>
